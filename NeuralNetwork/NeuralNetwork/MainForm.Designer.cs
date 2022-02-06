@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.learnButton = new System.Windows.Forms.Button();
             this.judgeButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -65,7 +65,7 @@
             // 
             // learnButton
             // 
-            this.learnButton.Location = new System.Drawing.Point(11, 578);
+            this.learnButton.Location = new System.Drawing.Point(15, 551);
             this.learnButton.Name = "learnButton";
             this.learnButton.Size = new System.Drawing.Size(171, 24);
             this.learnButton.TabIndex = 0;
@@ -75,7 +75,7 @@
             // 
             // judgeButton
             // 
-            this.judgeButton.Location = new System.Drawing.Point(188, 578);
+            this.judgeButton.Location = new System.Drawing.Point(192, 551);
             this.judgeButton.Name = "judgeButton";
             this.judgeButton.Size = new System.Drawing.Size(171, 24);
             this.judgeButton.TabIndex = 2;
@@ -123,31 +123,31 @@
             // 
             this.consoleListBox.FormattingEnabled = true;
             this.consoleListBox.ItemHeight = 12;
-            this.consoleListBox.Location = new System.Drawing.Point(12, 449);
+            this.consoleListBox.Location = new System.Drawing.Point(15, 435);
             this.consoleListBox.Name = "consoleListBox";
-            this.consoleListBox.Size = new System.Drawing.Size(347, 88);
+            this.consoleListBox.Size = new System.Drawing.Size(398, 88);
             this.consoleListBox.TabIndex = 9;
             // 
             // chart
             // 
-            chartArea4.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea4);
-            legend4.Name = "Legend1";
-            this.chart.Legends.Add(legend4);
+            chartArea1.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chart.Legends.Add(legend1);
             this.chart.Location = new System.Drawing.Point(435, 15);
             this.chart.Name = "chart";
-            series4.ChartArea = "ChartArea1";
-            series4.Legend = "Legend1";
-            series4.Name = "Series1";
-            this.chart.Series.Add(series4);
-            this.chart.Size = new System.Drawing.Size(534, 522);
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart.Series.Add(series1);
+            this.chart.Size = new System.Drawing.Size(534, 560);
             this.chart.TabIndex = 10;
             this.chart.Text = "chart1";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(10, 434);
+            this.label6.Location = new System.Drawing.Point(13, 420);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 12);
             this.label6.TabIndex = 11;
@@ -181,9 +181,9 @@
             // 
             // learnProgressBar
             // 
-            this.learnProgressBar.Location = new System.Drawing.Point(15, 556);
+            this.learnProgressBar.Location = new System.Drawing.Point(15, 529);
             this.learnProgressBar.Name = "learnProgressBar";
-            this.learnProgressBar.Size = new System.Drawing.Size(344, 10);
+            this.learnProgressBar.Size = new System.Drawing.Size(399, 10);
             this.learnProgressBar.TabIndex = 14;
             // 
             // learnNumNumericUpDown
@@ -323,7 +323,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(981, 654);
+            this.ClientSize = new System.Drawing.Size(981, 588);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.learnResLabel);

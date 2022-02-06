@@ -103,14 +103,9 @@ namespace NeuralNetwork
                 this.hoWeight = ConstSetMatrix(hideNodeSize, outputNodeSize, num);
             }
 
-           
-
             this.inputNodeSize = inputNodeSize;
             this.hideNodeSize = hideNodeSize;
             this.outputNodeSize = outputNodeSize;
-
-           // OutputMatrix(ihWeight, inputNodeSize, hideNodeSize);
-           // OutputMatrix(hoWeight, hideNodeSize, outputNodeSize);
         }
 
         // 学習

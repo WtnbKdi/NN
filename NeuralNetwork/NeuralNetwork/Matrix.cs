@@ -8,8 +8,6 @@ namespace NeuralNetwork
 {
     internal static class Matrix
     {
-        //     [1][2]      [1]        [5]
-        // A = [1][2], B = [2],  AB = [5]
         public static double[] Mul(double[,] lMat, double[] rMat, int sizeX, int sizeY)
         {
             double[] resMat = new double[sizeY]; // 結果行列
@@ -19,8 +17,6 @@ namespace NeuralNetwork
             return resMat;
         }
 
-        //     [1]      [1]                               [1][2]
-        // A = [2], B = [2], learnRate = 1, ABlearnRate = [2][4]
         // 重みの計算に使う
         public static double[,] Mul(double[] lMat, double[] rMat, double[,] dstMat, double learnRate)
         {
@@ -30,8 +26,6 @@ namespace NeuralNetwork
             return dstMat;
         }
 
-        //     [1]      [1]        [1]
-        // A = [2], B = [2],  AB = [4]
         public static double[] Mul(double[] lMat, double[] rMat)
         {
             if (lMat.Length != rMat.Length) 
@@ -42,8 +36,6 @@ namespace NeuralNetwork
             return res;
         }
 
-        //     [0.4]              [0.6]
-        // A = [0.4],   1.0 - B = [0.6]
         public static double[] Sub1Num(double[] mat)
         {
             double[] resultMat = new double[mat.Length];
@@ -52,8 +44,6 @@ namespace NeuralNetwork
             return resultMat;
         }
 
-        //     [1]      [1]         [0]
-        // A = [2], B = [2],  A-B = [0]
         // 誤差の計算に使う
         public static double[] OutError(double[] lMat, double[] rMat)
         {

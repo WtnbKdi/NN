@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "2f882d8e-9daf-456b-b26a-005ecaa1a624": {
+      "ProjectGuid": "2f882d8e-9daf-456b-b26a-005ecaa1a624",
+      "DisplayName": "NeuralNetwork",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

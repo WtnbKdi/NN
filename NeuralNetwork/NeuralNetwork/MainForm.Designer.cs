@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.learnButton = new System.Windows.Forms.Button();
             this.judgeButton = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -56,8 +56,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.errorLabel = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.resembleLabel = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.chart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.hiddenNumericUpDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.learnNumNumericUpDown)).BeginInit();
@@ -132,16 +130,16 @@
             // 
             // chart
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chart.ChartAreas.Add(chartArea2);
-            legend2.Name = "Legend1";
-            this.chart.Legends.Add(legend2);
+            chartArea4.Name = "ChartArea1";
+            this.chart.ChartAreas.Add(chartArea4);
+            legend4.Name = "Legend1";
+            this.chart.Legends.Add(legend4);
             this.chart.Location = new System.Drawing.Point(435, 15);
             this.chart.Name = "chart";
-            series2.ChartArea = "ChartArea1";
-            series2.Legend = "Legend1";
-            series2.Name = "Series1";
-            this.chart.Series.Add(series2);
+            series4.ChartArea = "ChartArea1";
+            series4.Legend = "Legend1";
+            series4.Name = "Series1";
+            this.chart.Series.Add(series4);
             this.chart.Size = new System.Drawing.Size(534, 522);
             this.chart.TabIndex = 10;
             this.chart.Text = "chart1";
@@ -305,7 +303,7 @@
             // errorLabel
             // 
             this.errorLabel.AutoSize = true;
-            this.errorLabel.Location = new System.Drawing.Point(60, 401);
+            this.errorLabel.Location = new System.Drawing.Point(87, 401);
             this.errorLabel.Name = "errorLabel";
             this.errorLabel.Size = new System.Drawing.Size(29, 12);
             this.errorLabel.TabIndex = 29;
@@ -316,29 +314,9 @@
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(25, 401);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(29, 12);
+            this.label14.Size = new System.Drawing.Size(53, 12);
             this.label14.TabIndex = 27;
-            this.label14.Text = "誤差";
-            // 
-            // resembleLabel
-            // 
-            this.resembleLabel.AutoSize = true;
-            this.resembleLabel.Font = new System.Drawing.Font("メイリオ", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.resembleLabel.Location = new System.Drawing.Point(512, 594);
-            this.resembleLabel.Name = "resembleLabel";
-            this.resembleLabel.Size = new System.Drawing.Size(89, 41);
-            this.resembleLabel.TabIndex = 31;
-            this.resembleLabel.Text = "none";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("MS UI Gothic", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
-            this.label13.Location = new System.Drawing.Point(411, 593);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(95, 35);
-            this.label13.TabIndex = 30;
-            this.label13.Text = "結果:";
+            this.label14.Text = "認識誤差";
             // 
             // MainForm
             // 
@@ -346,8 +324,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(981, 654);
-            this.Controls.Add(this.resembleLabel);
-            this.Controls.Add(this.label13);
             this.Controls.Add(this.errorLabel);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.learnResLabel);
@@ -413,8 +389,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label errorLabel;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label resembleLabel;
-        private System.Windows.Forms.Label label13;
     }
 }
 

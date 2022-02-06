@@ -27,7 +27,7 @@ namespace NeuralNetwork
         Pen inpPen = new Pen(Brushes.Green);
         Bitmap tPicBmp;
         Bitmap inpPicBmp;
-        int Resol = 20; // 筆の太さ 1 or 5の倍数
+        int Resol = 5; // 筆の太さ 1 or 5の倍数
 
         public MainForm()
         {
@@ -78,32 +78,37 @@ namespace NeuralNetwork
             }
         }
 
-        // ピクチャーボックスのドットをカウント
-        void CountDot(List<double> inpData, Bitmap b)
+        // 四角枠の中にドットが存在するか
+        bool scanRect(int x, int y, Bitmap bm)
         {
-            int cnt;
+            for (int xx = x; xx < Resol + x; xx++)
+                for (int yy = y; yy < Resol + y; yy++)
+                    if (bm.GetPixel(xx, yy).G > 0)
+                        return true;
+            return false;
+        }
+
+        // ピクチャーボックスのドットをカウント
+        List<double> CountDot(Bitmap bm)
+        {
+            List<double> inpData = new List<double>();
             for (int x = 0; x < tPictureBox.Width; x += Resol)
             {
                 for (int y = 0; y < tPictureBox.Height; y += Resol)
                 {
-                    cnt = 0;
-                    for (int xx = x; xx < Resol + x; xx++)
-                        for (int yy = y; yy < Resol + y; yy++)
-                            if (b.GetPixel(xx, yy).G > 0)
-                                cnt++;
-                    if (cnt > 0) inpData.Add(1);
+                    if (scanRect(x, y, bm)) inpData.Add(1);
                     else inpData.Add(0);
                 }
             }
+            return inpData;
         }
 
         // 開始
         private async void learnButton_Click(object sender, EventArgs e)
         {
             consoleListBox.Items.Clear();
-            Bitmap b = new Bitmap(tPictureBox.Image);
-            List<double> inpData = new List<double>(); // 教師入力データ
-            CountDot(inpData, b); //  教師入力データのドットカウント
+            Bitmap bm = new Bitmap(tPictureBox.Image);
+            List<double> inpData = CountDot(bm); //  教師データ
             ChartArea ca = new ChartArea();
             Series ser = new Series();
             ChartInit(ca, ser); // チャート初期化
@@ -119,7 +124,6 @@ namespace NeuralNetwork
                     !wCheckBox.Checked,
                     Convert.ToDouble(wTextBox.Text
                 ));
-            //Train(ser, learnNum, inpData.ToArray());
             await Task.Run(() => {
                 Train(ser, learnNum, inpData.ToArray());
             });
@@ -131,17 +135,12 @@ namespace NeuralNetwork
         private void judgeButton_Click(object sender, EventArgs e)
         {
             Bitmap b = new Bitmap(inpPictureBox.Image);
-            List<double> inpData = new List<double>(); // 入力データ
-            CountDot(inpData, b); // 入力データのドットを数える
-            double res = nn.Run(inpData.ToArray())[0]; // 訓練開始
-            double lRes = Convert.ToDouble(learnResLabel.Text);
+            List<double> inpData = CountDot(b); // 入力データ
+            double res = nn.Run(inpData.ToArray())[0]; // 実行結果 
+            double lRes = Convert.ToDouble(learnResLabel.Text); // 訓練結果
             double err = Math.Abs(lRes - res) * 10000; // 教師データと入力されたデータの誤差
             resultLabel.Text = Convert.ToString(res); // 学習結果表示
-            errorLabel.Text = "" + err; // 誤差
-            //resembleLabel.Text = $"{err:F2}";  // 誤差
-
-            if (err <= 0.003) resembleLabel.Text = "似ています";
-            else resembleLabel.Text = "似ていません";
+            errorLabel.Text = "" + err; // 認識誤差
         }
 
         // クリックボタン押す
@@ -190,7 +189,7 @@ namespace NeuralNetwork
         private void inpPictureBox_MouseMove(object sender, MouseEventArgs e)
         {
             if (!InpMouseMoveFlg) return;
-            // 複数あるのドットを書き込むマスの中心座標とマウス座標の距離を求めて、最もマウス座標から近いマスに書き込む
+            // 複数あるドットを書き込むマスの中心座標とマウス座標の距離を求めて、最も近いマスに書き込む
             (int x, int y) res = DotRangeCalc(inpPictureBox.Width, inpPictureBox.Height, e);
             GrInp.FillRectangle(Brushes.Green, res.x, res.y, Resol, Resol); // 四角形を書き込む
             inpPictureBox.Refresh();

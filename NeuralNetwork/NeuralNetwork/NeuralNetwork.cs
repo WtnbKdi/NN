@@ -21,26 +21,6 @@ namespace NeuralNetwork
             outputNodeSize;    // 出力層サイズ
         Random rnd = new Random();
 
-        // 2次元 行列内表示
-        void OutputMatrix(double[,] mat, int sizeX, int sizeY)
-        {
-            for(int y = 0; y < sizeY; y++)
-            {
-                for (int x = 0; x < sizeX; x++)
-                {
-                    Debug.Write(mat[y,x] + " ");
-                }
-                Debug.WriteLine(" ");
-            }
-        }
-
-        // 1次元 行列内表示
-        void OutputMatrix(double[] mat)
-        {
-            foreach (var index in mat) Debug.Write(index + " ");
-            Debug.WriteLine(" ");
-        }
-
         // 重みにランダムな値をセット
         double[,] RandomSetMatrix(int sizeX, int sizeY)
         {
@@ -114,23 +94,27 @@ namespace NeuralNetwork
             int sizeX = outputNodeSize, sizeY = hideNodeSize;
 
             // 重みと入出力の計算
-            hOut = SigmoidSetMatrix(Matrix.Mul(ihWeight, inpMatrix, inputNodeSize, hideNodeSize));
-            oOut = SigmoidSetMatrix(Matrix.Mul(hoWeight, hOut, hideNodeSize, outputNodeSize));
+            hOut = SigmoidSetMatrix(Matrix.Mul(ihWeight, inpMatrix));
+            oOut = SigmoidSetMatrix(Matrix.Mul(hoWeight, hOut));
 
             // BP
             oErr = Matrix.OutError(oOut, teacherMatrix);
-            hErr = Matrix.Mul(Matrix.Transpose(hoWeight, sizeY, sizeX), oErr, sizeX, sizeY);
+            hErr = Matrix.Mul(Matrix.Transpose(hoWeight), oErr);
 
             // 勾配降下 各層の重みの調整
-            hoWeight = Matrix.Mul(Matrix.Mul(Matrix.Mul(oErr, oOut), Matrix.Sub1Num(oOut)), Matrix.Transpose(hOut) , hoWeight, learnRate);
-            ihWeight = Matrix.Mul(Matrix.Mul(Matrix.Mul(hErr, hOut), Matrix.Sub1Num(hOut)), Matrix.Transpose(inpMatrix), ihWeight, learnRate);
+            double[] hoErrOut = Matrix.Mul(oErr, oOut);
+            double[] hoSubOut = Matrix.Sub1Num(oOut);
+            double[] ihErrOut = Matrix.Mul(hErr, hOut);
+            double[] ihSubOut = Matrix.Sub1Num(hOut);
+            hoWeight = Matrix.WeightMul(Matrix.Mul(hoErrOut, hoSubOut), Matrix.Transpose(hOut) , hoWeight, learnRate);
+            ihWeight = Matrix.WeightMul(Matrix.Mul(ihErrOut, ihSubOut), Matrix.Transpose(inpMatrix), ihWeight, learnRate);
         }
 
         // 実行
         public double[] Run(double[] inputMatrix)
         {
-            double[] hideOut = SigmoidSetMatrix(Matrix.Mul(ihWeight, inputMatrix, inputNodeSize, hideNodeSize));
-            double[] outOut = SigmoidSetMatrix(Matrix.Mul(hoWeight, hideOut, hideNodeSize, outputNodeSize));
+            double[] hideOut = SigmoidSetMatrix(Matrix.Mul(ihWeight, inputMatrix));
+            double[] outOut = SigmoidSetMatrix(Matrix.Mul(hoWeight, hideOut));
             return outOut;
         }
 

@@ -8,8 +8,9 @@ namespace NeuralNetwork
 {
     internal static class Matrix
     {
-        public static double[] Mul(double[,] lMat, double[] rMat, int sizeX, int sizeY)
+        public static double[] Mul(double[,] lMat, double[] rMat)
         {
+            int sizeX = lMat.GetLength(1), sizeY = lMat.GetLength(0);
             double[] resMat = new double[sizeY]; // 結果行列
             for (int y = 0; y < sizeY; y++)
                 for (int x = 0; x < sizeX; x++)
@@ -18,7 +19,7 @@ namespace NeuralNetwork
         }
 
         // 重みの計算に使う
-        public static double[,] Mul(double[] lMat, double[] rMat, double[,] dstMat, double learnRate)
+        public static double[,] WeightMul(double[] lMat, double[] rMat, double[,] dstMat, double learnRate)
         {
             for(int y = 0; y < rMat.Length; y++)
                 for (int x = 0; x < lMat.Length; x++)
@@ -54,8 +55,9 @@ namespace NeuralNetwork
         }
 
         // 転置行列
-        public static double[,] Transpose(double[,] mat, int sizeX, int sizeY)
+        public static double[,] Transpose(double[,] mat)
         {
+            int sizeX = mat.GetLength(1), sizeY = mat.GetLength(0);
             double[,] resultMat = new double[sizeX, sizeY];
             for(int y = 0; y < sizeY; y++)
                 for (int x = 0; x < sizeX; x++)
@@ -69,16 +71,6 @@ namespace NeuralNetwork
             double[] resultMat = new double[mat.Length];
             for (int i = 0; i < mat.Length; i++)
                 resultMat[i] = mat[mat.Length - 1 - i];
-            return resultMat;
-        }
-
-        // 加算 行列
-        public static double[,] Add(double[,] lMat, double[,] rMat, int sizeX, int sizeY)
-        {
-            double[,] resultMat = new double[sizeX, sizeY];
-            for (int y = 0; y < sizeX; y++)
-                for (int x = 0; x < sizeY; x++)
-                    lMat[y,x] += rMat[y,x];
             return resultMat;
         }
     }
